@@ -89,14 +89,11 @@ export class BracketsViewer {
         if (!data.stages?.length)
             throw Error('The `data.stages` array is either empty or undefined');
 
-        if (!data.participants?.length)
-            throw Error('The `data.participants` array is either empty or undefined');
-
         if (!data.matches?.length)
             throw Error('The `data.matches` array is either empty or undefined');
 
-        this.participants = data.participants;
-        data.participants.forEach(participant => this.participantRefs[participant.id] = []);
+        this.participants = data.participants ?? [];
+        this.participants.forEach(participant => this.participantRefs[participant.id] = []);
 
         this.popover = document.createElement('div');
         this.popover.setAttribute('popover', 'auto');
